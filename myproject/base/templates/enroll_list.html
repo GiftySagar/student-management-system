@@ -1,0 +1,130 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<center><br>
+    <form action="{% url 'search' %}" method="get">
+        <input type="text" name="q" placeholder="Search...">
+        <button type="submit" class="search-btn">Search</button>
+    </form>
+</center>
+
+
+
+
+
+
+
+
+<center><h2>Courses Enrolled</h2></center>
+
+
+<style>
+
+
+h2 {
+    text-align: center;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 32px;
+    color: black;
+    margin: 20px 0;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+   }
+
+
+   
+    .search-btn {
+        padding: 10px 20px;
+        background-color: #2563eb;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.3s ease;
+    }
+
+    .search-btn:hover {
+        background-color: #1e40af;
+        transform: scale(1.05);
+    }
+
+    .search-btn:active {
+        transform: scale(0.98);
+    }
+
+
+    body {
+        
+        
+        background: linear-gradient(135deg, #1e3a8a, #2563eb);
+        
+        
+    }
+    
+            table {
+            width: 80%;
+            border-collapse: collapse; /* Removes double borders */
+            margin: 20px auto; /* Center the table */
+            background-color: #f2f2f2; /* Table background */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Optional shadow */
+        }
+
+        /* Style table headers */
+        th {
+            background-color: #4CAF50; /* Header background */
+            color: white; /* Header text color */
+            padding: 10px;
+            text-align: left;
+        }
+
+        /* Style table cells */
+        td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd; /* Optional row separator */
+        }
+
+        /* Alternate row colors */
+        tr:nth-child(even) {
+            background-color: #e6f7ff; /* Light blue for even rows */
+        }
+
+        tr:hover {
+            background-color: #d1f0ff; /* Highlight on hover */
+        }
+
+
+      
+
+
+</style>
+            
+
+
+
+
+
+
+<table border="1" cellpadding="10" cellspacing="0"  >
+
+    <tr>
+        <th>Student</th>
+        <th>Course</th>
+        <th>Action</th>
+    </tr>
+    {% for item in data %}
+    <tr>
+        <td>{{ item.student.user.username }}</td>
+        <td>{{ item.course.course_name }}</td>
+        <td>
+            <form method="POST" action="{% url 'soft_delete_enroll' item.pk %}">
+                {% csrf_token %}
+                <button type="submit">Move To Trash</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+    
+{% endblock %}

@@ -1,0 +1,105 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+<center><h2>Profile Page</h2></center>
+
+<style>
+body {
+    background: linear-gradient(135deg, #1e3a8a, #2563eb);
+}
+
+.user-box {
+    background-color: pink;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 20px;
+    width: 500px;
+    margin: 50px auto;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    font-family: Arial, sans-serif;
+}
+
+/* TWO COLUMN LAYOUT */
+.profile-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    
+}
+
+/* LEFT COLUMN (IMAGE) */
+.profile-left {
+    flex: 1;
+    text-align: center;
+}
+
+.profile-img {
+    width: 150px;
+    height: 200px;
+    object-fit: cover;
+    border: 2px solid black;
+}
+
+/* RIGHT COLUMN (DETAILS) */
+
+.profile-right {
+    flex: 2;
+    background: #ffffff;
+    padding: 15px 18px;
+    border-radius: 8px;
+    border: 4px solid black;
+}
+
+.profile-right p {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+    font-size: 14px;
+    color: #333;
+}
+
+.profile-right p:not(:last-child) {
+    border-bottom: 1px solid #e5e5e5;
+    padding-bottom: 6px;
+}
+
+.profile-right span {
+    font-weight: 600;
+    color: black;
+}
+
+</style>
+
+<div class="user-box">
+
+    <div class="profile-container">
+
+        <!-- LEFT : IMAGE -->
+        <div class="profile-left">
+            {% if student.simage %}
+                <img src="{{ student.simage.url }}" class="profile-img">
+            {% else %}
+                <img src="{% static 'images/Default.jpg' %}" class="profile-img">
+            {% endif %}
+        </div>
+
+        <!-- RIGHT : DETAILS -->
+        <div class="profile-right">
+        <p><span>User</span><span>{{ request.user }}</span></p>
+        <p><span>First Name</span><span>{{ request.user.first_name }}</span></p>
+        <p><span>Last Name</span><span>{{ request.user.last_name }}</span></p>
+        <p><span>Email</span><span>{{ request.user.email }}</span></p>
+        <p><span>Username</span><span>{{ request.user.username }}</span></p>
+        </div>
+
+
+    </div>
+
+    <center style="margin-top: 15px;">
+        <a href="{% url 'reset' %}">Reset Password</a>
+    </center>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,102 @@
+{% extends 'main.html' %}
+
+{% block content %}
+    <center><h2>Course List</h2></center>
+    {% if messages %}
+        {% for m  in messages %}
+          <center> <b> {{m}}</b> </center>
+        {% endfor %}
+    {% endif %}
+
+    <style>
+
+        
+h2 {
+    text-align: center;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 32px;
+    color: black;
+    margin: 20px 0;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+   }
+
+
+    body {
+        
+        
+        background: linear-gradient(135deg, #1e3a8a, #2563eb);
+        
+        
+    }
+
+
+    table {
+            width: 80%;
+            border-collapse: collapse; /* Removes double borders */
+            margin: 20px auto; /* Center the table */
+            background-color: #f2f2f2; /* Table background */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Optional shadow */
+        }
+
+        /* Style table headers */
+        th {
+            background-color: #4CAF50; /* Header background */
+            color: white; /* Header text color */
+            padding: 10px;
+            text-align: left;
+        }
+
+        /* Style table cells */
+        td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd; /* Optional row separator */
+        }
+
+        /* Alternate row colors */
+        tr:nth-child(even) {
+            background-color: #e6f7ff; /* Light blue for even rows */
+        }
+
+        tr:hover {
+            background-color: #d1f0ff; /* Highlight on hover */
+        }
+
+
+
+
+
+
+    </style>
+
+    
+
+    <table border="1" cellpadding="10" cellspacing="0">
+
+        <tr>
+            <th>Serial No</th>
+            <th>Course Name</th>
+            <th>Course Code </th>
+            <th>Action</th>
+        </tr>
+        {% for course in data %}
+        <tr>
+            <td>{{course.id}}</td>
+            <td>{{course.course_name}}</td>
+            <td>{{course.course_code}}</td>
+            <td>
+                <a href="{% url 'enroll' course.id %}">Enroll</a>
+                
+
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td>
+                No courses avaliable..!!
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
+

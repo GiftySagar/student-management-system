@@ -1,0 +1,129 @@
+{% extends 'main.html' %}
+
+{% block content %}
+    <center><h2>Register page</h2></center>
+{% if messages %}
+  {% for message in messages %}
+   <center> <p style="color:black;">{{ message }}</p></center>
+  {% endfor %}
+{% endif %}
+
+
+
+
+
+    <style>
+
+
+h2 {
+    text-align: center;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 32px;
+    color: black;
+    margin: 20px 0;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+   }
+
+
+    .form-container {
+        width: 400px;
+        margin: 40px auto;
+        padding: 25px;
+        background: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        font-family: Arial, sans-serif;
+    }
+
+    .form-container label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 5px;
+        color: #333;
+    }
+
+    .form-container input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 14px;
+        margin-bottom: 15px;
+        transition: 0.3s;
+    }
+
+    .form-container input:focus {
+        border-color: #4f46e5;
+        outline: none;
+        box-shadow: 0 0 5px rgba(79, 70, 229, 0.4);
+    }
+
+    .form-container input[readonly] {
+        background-color: #f3f4f6;
+        cursor: not-allowed;
+    }
+
+    .form-container button {
+        width: 100%;
+        padding: 12px;
+        background: #4f46e5;
+        border: none;
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .form-container button:hover {
+        background: #4338ca;
+    }
+
+body {
+        
+        
+        background: linear-gradient(135deg, #1e3a8a, #2563eb);
+        
+        
+    }
+    
+    
+
+</style>
+
+
+
+    <center>
+        <div class="form-container">
+        <form action="" method="POST"  enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="">First Name: </label>
+            <input type="text" name="fname" id=""> <br>
+
+            <label for="">Last Name: </label>
+            <input type="text" name="lname" id=""> <br>
+
+            <label for="">Email: </label>
+            <input type="email" name="email" id=""> <br>
+
+            <label for="">Username: </label>
+            <input type="text" name="username" placeholder="Enter Username" id=""> <br>
+
+            <label for="">Password: </label>
+            <input type="password" name="password" placeholder="Enter Password" minlength="4" maxlength="8" required><br>
+            
+            <label for="">Image:</label>
+            <input type="file" name="simage" id=""> <br>
+
+            <label for="">Contact:</label>
+            <input type="number" name="contact" id=""> <br>
+            
+            
+
+            <button type="submit">Submit</button>
+        </form>
+        </div>
+    </center>
+{% endblock %}

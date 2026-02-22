@@ -1,0 +1,130 @@
+{% extends 'main.html' %}
+{% block content %}
+<center>><h2>Update Student Profile</h2></center>
+{% if messages %}
+  {% for message in messages %}
+   <center> <p style="color:black;">{{ message }}</p></center>
+  {% endfor %}
+{% endif %}
+
+<style>
+
+h2 {
+    text-align: center;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 32px;
+    color: black;
+    margin: 20px 0;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+   }
+
+
+    .form-container {
+        width: 400px;
+        margin: 40px auto;
+        padding: 25px;
+        background: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        font-family: Arial, sans-serif;
+    }
+
+    .form-container label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 5px;
+        color: #333;
+    }
+
+    .form-container input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 14px;
+        margin-bottom: 15px;
+        transition: 0.3s;
+    }
+
+    .form-container input:focus {
+        border-color: #4f46e5;
+        outline: none;
+        box-shadow: 0 0 5px rgba(79, 70, 229, 0.4);
+    }
+
+    .form-container input[readonly] {
+        background-color: #f3f4f6;
+        cursor: not-allowed;
+    }
+
+    .form-container button {
+        width: 100%;
+        padding: 12px;
+        background: #4f46e5;
+        border: none;
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .form-container button:hover {
+        background: #4338ca;
+    }
+
+body {
+        
+        
+        background: linear-gradient(135deg, #1e3a8a, #2563eb);
+        
+        
+    }
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+</style>
+
+
+<center>
+    <div class="form-container">
+
+<form action ="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <label>First Name</label><br>
+    <input type="text" name="first_name" value="{{ request.user.first_name }}"><br><br>
+
+    <label>Last Name</label><br>
+    <input type="text" name="last_name" value="{{ request.user.last_name }}"><br><br>
+
+    <label>Email</label><br>
+    <input type="email" name="email" value="{{ request.user.email }}"><br><br>
+
+    <label>Username</label><br>
+    <input type="text" name="username" value="{{ request.user.username }}"><br><br>
+
+    <label>Contact</label><br>
+    <input type="text" name="contact" value="{{ request.user.student.contact }}"><br><br>
+
+    <label> Image</label><br>
+    <input type="file" name="simage"><br><br>
+
+    <button type="submit">Update</button>
+</form>
+    </div>
+</center>
+{% endblock %}

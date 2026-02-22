@@ -1,0 +1,99 @@
+<div class="search-container">
+<h2 class="search-title">Search Results for: "{{ query }}"</h2>
+
+<style>
+    .search-container {
+        max-width: 800px;
+        margin: 40px auto;
+        font-family: "Segoe UI", sans-serif;
+    }
+
+    .search-title {
+        text-align: center;
+        font-size: 24px;
+        margin-bottom: 25px;
+        color: #1f2937;
+    }
+
+    .results-list {
+        list-style: none;
+        padding: 0;
+    }
+
+    .result-card {
+        background: #ffffff;
+        padding: 20px;
+        margin-bottom: 15px;
+        border-radius: 10px;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+        transition: 0.3s;
+        border-left: 5px solid #2563eb;
+    }
+
+    .result-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+    }
+
+    .result-card h3 {
+        margin: 0;
+        font-size: 20px;
+        color: #111827;
+    }
+
+    .result-card p {
+        margin: 6px 0 0;
+        color: #4b5563;
+        font-size: 14px;
+    }
+
+    .no-results {
+        text-align: center;
+        font-size: 16px;
+        color: #991b1b;
+        background: #fee2e2;
+        padding: 12px;
+        border-radius: 8px;
+        margin-top: 20px;
+    }
+
+
+    body {
+        
+        
+        background: linear-gradient(135deg, #1e3a8a, #2563eb);
+        
+        
+    }
+
+h2 {
+    text-align: center;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 32px;
+    color: black;
+    margin: 20px 0;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+   }
+
+
+
+</style>
+
+
+
+
+
+{% if results %}
+    <ul class="results-list">
+    {% for item in results %}
+        <li class="result-card">
+            <h3>{{ item.course_name }}</h3>
+            <p>Code:{{ item.course_code}}</p>
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p class="no-results">No results found for "{{ query }}".</p>
+{% endif %}
+</div>
